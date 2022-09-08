@@ -1,5 +1,12 @@
 # Proyecto TODO LIST
 
+
+| Glosary |
+| ------|
+[ Proyecto Todo List]()
+[ Agregando Elementos a nuestro listado]()
+
+
 Este proyecto trata sobre una pequeña aplicacion que mantenga  persistencia de datos, donde podamos escribir un texto y este se guarde al oprimir un boton enviar, 
 en forma de una lista unordered (no ordenada)
 
@@ -36,5 +43,7 @@ Si abrimos inspeccionar y consola en el navegador podremos ver que estamos impri
 ### Consola
 ![image](https://user-images.githubusercontent.com/42829215/189218423-5fd9cd1c-c5bf-4319-93b3-6e69c20d80cc.png)
 ![image](https://user-images.githubusercontent.com/42829215/189219149-eb9115c6-fddb-4c5e-8eff-fdb6cfa58d10.png)
+
+#  Agregando Elementos a nuestro listado
 
 
