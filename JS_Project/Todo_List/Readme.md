@@ -3,8 +3,9 @@
 
 | Glosary |
 | ------|
-[ Proyecto Todo List]()
-[ Agregando Elementos a nuestro listado]()
+[ Proyecto Todo List](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#proyecto-todo-list)
+[ Agregando Elementos a nuestro listado](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#agregando-elementos-a-nuestro-listado)
+[ Simplificando operaciones de array con .map](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#simplificando-operaciones-de-array-con-map)
 
 
 Este proyecto trata sobre una pequeña aplicacion que mantenga  persistencia de datos, donde podamos escribir un texto y este se guarde al oprimir un boton enviar, 
@@ -109,3 +110,114 @@ Ahora la app recibe datos que al enviarlos los acomoda en forma de lista unorder
 
 ![image](https://user-images.githubusercontent.com/42829215/189254699-50b28570-fa66-4cde-953d-acf25989f221.png)
 ![image](https://user-images.githubusercontent.com/42829215/189254738-4f7441e1-ae5f-476d-9073-df84fb77e222.png)
+
+
+# Simplificando operaciones de array con .map
+
+El metodo ``.map`` nos permite iterar nuestros arreglos sin necesidad de que nosostros le vayamos indicando los indices o las operaciones que tengamos que realizar. Esto nos permitira poder simplificar todo el bucle ``for`` por una sola linea de codigo y poder hacer lo mismo
+
+Estructura de ``.map``
+```.js
+const todosTemplate = todos.map(t => {
+return <li> + t +</li>;
+})
+```
+Lo que hace nuestra funcion ``todos.map``  es hacer que ``t`` retorne un elemento tipo``<li></li>``
+
+
+tambien podemos simplificarlo a una sola linea ejemplo:
+```.js
+const todosTemplate = todos.map(t => <li> + t +</li>;)
+```
+Podemos ver la funcion como, a todos los elementos ``t`` concatenalos al principio y al final con ``<li>`` y ``</li>``
+
+## Simplificando el for con el metodo ``.map`` 
+Si recordamos en la seccion de agregar elementos a nuestro listado lo hacemos con un ``for``, esto funciona bien pero podemos hacer lo mismo de una manera mas optima limpia y simplificada con el metodo .map. a continuacion se mostraran dos plantillas de codigo una utliza ``for`` y otra ``.map`` con el fin de apreciar las diferencias.
+
+### For
+```.js
+// Creamos un arreglo al que se le iran agragando elementos
+const todos = []; // array empty
+
+// window.onload permite que cargue el html antes que el JS
+window.onload = () => {
+// Creamos form el cual llamada al elemento form por su ID
+const form = document.getElementById('todo-form');
+form.onsubmit = (refresh) => {
+    // los submit tienen como determinado resfresh eso lo podemos cambiar con la siguiente funcion
+    refresh.preventDefault();// prevenimos que el navegador se refresque
+    // vamos a input id = "todo"
+    const todo = document.getElementById('todo');
+    // Sacamos el valor de input id = "todo"
+    const todoText = todo.value;
+    // Cambiamos el valor de input id todo y lo remplazamos por un string vacio
+    todo.value = '';
+
+    // .push nos permite agregar elementos al array
+    todos.push(todoText);
+    const todoList = document.getElementById('todo-list');
+    // limpiamos el listado, evita repeticion de elementos 
+    todoList.innerHTML = '';
+    for (let i = 0; i < todos.length; i++ ){
+        // usamos += para sumar una concatenacion de lista cada vez con la iteracion [i]
+        todoList.innerHTML += '<li>' + todos[i] + '</li>';
+    }
+    console.log(todoText);
+    }
+}
+```
+### .map
+```.js
+const todoTemplate = todos.map(t => '<li>' + t + '</li>');
+```
+Como no podemos colocar un Array dentro de nuestro HTML deberemos hacer uso de la funcion ``join()`` y darle la isntruccion de que nos guarde todos los elementos de nuestro arreglo en un ``string`` vacio .
+
+```.js
+const todoTemplate = todos.map(t => '<li>' + t + '</li>');
+todosList.innerHTML = todosTemplate.join(''); 
+```
+``todoList`` es la variable que hace referencia al id tag que se esta manejando.
+
+## Codgigo de la app Simplificado 
+
+```.js
+// Creamos un arreglo al que se le iran agragando elementos
+const todos = []; // array empty
+
+// window.onload permite que cargue el html antes que el JS
+window.onload = () => {
+// Creamos form el cual llamada al elemento form por su ID
+const form = document.getElementById('todo-form');
+form.onsubmit = (refresh) => {
+    // los submit tienen como determinado resfresh eso lo podemos cambiar con la siguiente funcion
+    refresh.preventDefault();// prevenimos que el navegador se refresque
+    // vamos a input id = "todo"
+    const todo = document.getElementById('todo');
+    // Sacamos el valor de input id = "todo"
+    const todoText = todo.value;
+    // Cambiamos el valor de input id todo y lo remplazamos por un string vacio
+    todo.value = '';
+
+    // .push nos permite agregar elementos al array
+    todos.push(todoText);
+    const todoList = document.getElementById('todo-list');
+    // limpiamos el listado, evita repeticion de elementos 
+    todoList.innerHTML = '';
+    
+    //metodo .map
+    const todoTemplate = todos.map(t => '<li>' + t + '</li>');
+    // Damos la instrucion de guardar los elementos del array en un  string vacio
+    todoList.innerHTML = todoTemplate.join('');
+   
+    
+    // El for queda remplado por el uso del metodo .map para este caso puesto nos permite un codigo mas limpio y corto
+    
+    // for (let i = 0; i < todos.length; i++ ){
+    //     // usamos += para sumar una concatenacion de lista cada vez con la iteracion [i]
+    //     todoList.innerHTML += '<li>' + todos[i] + '</li>';
+    // }
+    // console.log(todoText);
+     
+    }
+}
+```
