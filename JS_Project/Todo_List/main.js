@@ -23,5 +23,12 @@ form.onsubmit = (refresh) => {
 
     const todoTemplate = todos.map(t => '<li>' + t + '</li>');
     todoList.innerHTML = todoTemplate.join('');
+
+    const elementos = document.querySelectorAll('#todo-list li');
+    elementos.forEach((elementos, i) => {
+            elementos.addEventListener('click', () => {
+                console.log(elementos, i);
+            });
+        });
     }
 }
