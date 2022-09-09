@@ -178,7 +178,7 @@ todosList.innerHTML = todosTemplate.join('');
 ```
 ``todoList`` es la variable que hace referencia al id tag que se esta manejando.
 
-## Codgigo de la app Simplificado 
+## Codigo de la app Simplificado 
 
 ```.js
 // Creamos un arreglo al que se le iran agragando elementos
