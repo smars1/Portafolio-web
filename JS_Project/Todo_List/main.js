@@ -1,3 +1,6 @@
+// Creamos un arreglo al que se le iran agragando elementos
+const todos = []; // array empty
+
 // window.onload permite que cargue el html antes que el JS
 window.onload = () => {
 // Creamos form el cual llamada al elemento form por su ID
@@ -11,6 +14,16 @@ form.onsubmit = (refresh) => {
     const todoText = todo.value;
     // Cambiamos el valor de input id todo y lo remplazamos por un string vacio
     todo.value = '';
+
+    // .push nos permite agregar elementos al array
+    todos.push(todoText);
+    const todoList = document.getElementById('todo-list');
+    // limpiamos el listado, evita repeticion de elementos 
+    todoList.innerHTML = '';
+    for (let i = 0; i < todos.length; i++ ){
+        // usamos += para sumar una concatenacion de lista cada vez con la iteracion [i]
+        todoList.innerHTML += '<li>' + todos[i] + '</li>';
+    }
     console.log(todoText);
     }
 }
