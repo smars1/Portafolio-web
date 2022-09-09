@@ -3,9 +3,9 @@
 
 | Glosary |
 | ------|
-[ Proyecto Todo List]()
-[ Agregando Elementos a nuestro listado]()
-[ Simplificando operaciones de array con .map]()
+[ Proyecto Todo List](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#proyecto-todo-list)
+[ Agregando Elementos a nuestro listado](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#agregando-elementos-a-nuestro-listado)
+[ Simplificando operaciones de array con .map](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#simplificando-operaciones-de-array-con-map)
 
 
 Este proyecto trata sobre una pequeña aplicacion que mantenga  persistencia de datos, donde podamos escribir un texto y este se guarde al oprimir un boton enviar, 
