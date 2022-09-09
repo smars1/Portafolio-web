@@ -20,10 +20,8 @@ form.onsubmit = (refresh) => {
     const todoList = document.getElementById('todo-list');
     // limpiamos el listado, evita repeticion de elementos 
     todoList.innerHTML = '';
-    for (let i = 0; i < todos.length; i++ ){
-        // usamos += para sumar una concatenacion de lista cada vez con la iteracion [i]
-        todoList.innerHTML += '<li>' + todos[i] + '</li>';
-    }
-    console.log(todoText);
+
+    const todoTemplate = todos.map(t => '<li>' + t + '</li>');
+    todoList.innerHTML = todoTemplate.join('');
     }
 }
