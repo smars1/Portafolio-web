@@ -6,6 +6,7 @@
 [ Proyecto Todo List](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#proyecto-todo-list)
 [ Agregando Elementos a nuestro listado](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#agregando-elementos-a-nuestro-listado)
 [ Simplificando operaciones de array con .map](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#simplificando-operaciones-de-array-con-map)
+[Agregando eventos al hacer click en elementos]()
 
 
 Este proyecto trata sobre una pequeña aplicacion que mantenga  persistencia de datos, donde podamos escribir un texto y este se guarde al oprimir un boton enviar, 
@@ -178,7 +179,7 @@ todosList.innerHTML = todosTemplate.join('');
 ```
 ``todoList`` es la variable que hace referencia al id tag que se esta manejando.
 
-## Codgigo de la app Simplificado 
+## Codigo de la app Simplificado 
 
 ```.js
 // Creamos un arreglo al que se le iran agragando elementos
@@ -210,7 +211,7 @@ form.onsubmit = (refresh) => {
     todoList.innerHTML = todoTemplate.join('');
    
     
-    // El for queda remplado por el uso del metodo .map para este caso puesto nos permite un codigo mas limpio y corto
+    // El for queda remplazado por el uso del metodo .map para este caso puesto nos permite un codigo mas limpio y corto
     
     // for (let i = 0; i < todos.length; i++ ){
     //     // usamos += para sumar una concatenacion de lista cada vez con la iteracion [i]
@@ -221,3 +222,18 @@ form.onsubmit = (refresh) => {
     }
 }
 ```
+
+# Agregando eventos al hacer click en elementos
+
+Si queremos agregar eventos a nuestros elementos de ``todo-list`` deberemos crear primero una funcion que nos permita agregar e imprimir los elementos de un array al listado para HTML y hacer uso del metodo ``.addEventListener`` podemos ayudarnos creando una funcion foreach a la cual le podemos dar como parametros el elemento y el numero de posicion de dicho elemento en el array.
+
+Estructura:
+```.js
+const elementos = document.querySelectorAll('#todo-list li');
+    elementos.forEach((elementos, i) => {
+            elementos.addEventListener('click', () => {
+                console.log(elementos, i);
+            });
+        });
+```     
+Al metodo ``.addEventListener`` le podemos dar como parametros el tipo de evento en este caso es cuando hacemos click en el elemento y como segundo parametro le damos una funcion que imprime el elemento y su numero de posicion en consola.
