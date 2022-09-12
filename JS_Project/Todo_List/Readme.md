@@ -6,7 +6,7 @@
 [ Proyecto Todo List](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#proyecto-todo-list)
 [ Agregando Elementos a nuestro listado](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#agregando-elementos-a-nuestro-listado)
 [ Simplificando operaciones de array con .map](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#simplificando-operaciones-de-array-con-map)
-[Agregando eventos al hacer click en elementos]()
+[Agregando eventos al hacer click en elementos](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#agregando-eventos-al-hacer-click-en-elementos)
 
 
 Este proyecto trata sobre una pequeña aplicacion que mantenga  persistencia de datos, donde podamos escribir un texto y este se guarde al oprimir un boton enviar, 
@@ -225,15 +225,102 @@ form.onsubmit = (refresh) => {
 
 # Agregando eventos al hacer click en elementos
 
+|-- Glosary --|
+|---------|
+[Agregando instruccion eliminara nuestra funcion]()
+[Creando nuestra funcion render]()
+
+
+
 Si queremos agregar eventos a nuestros elementos de ``todo-list`` deberemos crear primero una funcion que nos permita agregar e imprimir los elementos de un array al listado para HTML y hacer uso del metodo ``.addEventListener`` podemos ayudarnos creando una funcion foreach a la cual le podemos dar como parametros el elemento y el numero de posicion de dicho elemento en el array.
 
 Estructura:
 ```.js
-const elementos = document.querySelectorAll('#todo-list li');
+// Seleccionamos todos lo elementos de todo-list que sean li
+    const elementos = document.querySelectorAll('#todo-list li');
+    // iteramos con la funcion de forEach 
     elementos.forEach((elementos, i) => {
+        // Agregramos un escuchador de evento con el metodo .addEventListener 
             elementos.addEventListener('click', () => {
-                console.log(elementos, i);
+                 console.log(elementos, i);
+            });
+```     
+
+## Agregando instruccion eliminar a nuestra funcion
+
+Al metodo ``.addEventListener`` le podemos dar como parametros el tipo de evento en este caso es cuando hacemos click en el elemento y como segundo parametro le damos una funcion que imprime el elemento y su numero de posicion en consola.
+
+Lo primero que debemos agregar la instruccion de eleminar dentro de nuestra funcion de ``.addEventListerner()`` la cual es nuestra funcion de escucha.
+
+Los nodos padres tiene la capasidad de eleminar a sus hijos y esto se puede hacer con la instruccion  .parentNode.removeChild(<Arg>);   ``.parentNode`` lo que hara sera transformar lo que tenemos a el tag de HMTL en este caso es para un tag ``<ul></ul>`` mientras que ``.removeChild`` remueve dicho elemento. 
+
+```.js
+// Seleccionamos todos lo elementos de todo-list que sean li
+    const elementos = document.querySelectorAll('#todo-list li');
+    // iteramos con la funcion de forEach 
+    elementos.forEach((elementos, i) => {
+        // Agregramos un escuchador de evento con el metodo .addEventListener 
+            elementos.addEventListener('click', () => {
+                // removemos un nodo hijo de uno padre
+                elementos.parentNode.removeChild(elementos);
+                //indicamos el indice del elemento a eliminar de del array (limpiamos el array)
+                todos.splice(i, 1);
+            });
+```
+
+## Creando nuestra funcion render
+
+Al nosotros estar eliminando los elemtos de html y luego eliminandolos en nuestro arreglo de todos, el problema que teniamos era que los indices de los elementos de nuestro html no estaban siendo actualizados con respecto a nuestros arreglos estos se encontraban fuera de sincronia, y para sincronizarlos lo hacemos es que debemos renderizarlos nuevamente a nuestra aplicacion, para ello volvemos a llamar a la mismas funcion render que hemos creado, esto tambien se conoce como recursividad que es cuando una funcion se llama a si misma, en este caso es con el fin de que en cada cambio se vuelva a renderizar toda la app, para que esta quede en sincronia cada vez que se realize un cambio.
+
+Debemos renderizar todos los elementos que se encuentren dentro del forEach con el fin de que todos los elementos sean actualizados y nuestro arreglo pueda actualizar su estado cada vez que nosotros realizemos un cambio. 
+
+### Codigo actualizado
+```.js
+// Creamos un arreglo al que se le iran agragando elementos
+const todos = []; // array empty
+
+// Creamos funcion render
+const render = () => {
+    const todoList = document.getElementById('todo-list');
+    // limpiamos el listado, evita repeticion de elementos 
+    todoList.innerHTML = '';
+
+    const todoTemplate = todos.map(t => '<li>' + t + '</li>');
+    todoList.innerHTML = todoTemplate.join('');
+
+    // Seleccionamos todos lo elementos de todo-list que sean li
+    const elementos = document.querySelectorAll('#todo-list li');
+    // iteramos con la funcion de forEach 
+    elementos.forEach((elementos, i) => {
+        // Agregramos un escuchador de evento con el metodo .addEventListener 
+            elementos.addEventListener('click', () => {
+                // removemos un nodo hijo de uno padre
+                elementos.parentNode.removeChild(elementos);
+                //indicamos el indice del elemento a eliminar de del array (limpiamos el array)
+                todos.splice(i, 1);     
             });
         });
-```     
-Al metodo ``.addEventListener`` le podemos dar como parametros el tipo de evento en este caso es cuando hacemos click en el elemento y como segundo parametro le damos una funcion que imprime el elemento y su numero de posicion en consola.
+}
+
+// window.onload permite que cargue el html antes que el JS
+window.onload = () => {
+// Creamos form el cual llamada al elemento form por su ID
+const form = document.getElementById('todo-form');
+form.onsubmit = (refresh) => {
+    // los submit tienen como determinado resfresh eso lo podemos cambiar con la siguiente funcion
+    refresh.preventDefault();// prevenimos que el navegador se refresque
+    // vamos a input id = "todo"
+    const todo = document.getElementById('todo');
+    // Sacamos el valor de input id = "todo"
+    const todoText = todo.value;
+    // Cambiamos el valor de input id todo y lo remplazamos por un string vacio
+    todo.value = '';
+
+    // .push nos permite agregar elementos al array
+    todos.push(todoText);
+
+    // Ejecutamos render
+    render();
+    }
+}
+```
