@@ -225,10 +225,10 @@ form.onsubmit = (refresh) => {
 
 # Agregando eventos al hacer click en elementos
 
-|-- Glosary --|
+| Glosary |
 |---------|
-[Agregando instruccion eliminara nuestra funcion]()
-[Creando nuestra funcion render]()
+[Agregando instruccion eliminara nuestra funcion](https://github.com/smars1/Portafolio-web/blob/main/JS_Project/Todo_List/Readme.md#agregando-instruccion-eliminar-a-nuestra-funcion)
+[Creando nuestra funcion render](https://github.com/smars1/Portafolio-web/blob/main/JS_Project/Todo_List/Readme.md#creando-nuestra-funcion-render)
 
 
 
