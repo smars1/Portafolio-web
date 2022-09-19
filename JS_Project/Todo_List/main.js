@@ -1,5 +1,5 @@
-// Creamos un arreglo al que se le iran agragando elementos
-const todos = []; // array empty
+// Creamos un arreglo al que se le iran agragando elementos, si  no se eencuetra, se utilza un arreglo vacio
+const todos =JSON.parse(localStorage.getItem('todos')) || []; // array empty
 
 // Creamos funcion render
 const render = () => {
@@ -19,13 +19,24 @@ const render = () => {
                 // removemos un nodo hijo de uno padre
                 elementos.parentNode.removeChild(elementos);
                 //indicamos el indice del elemento a eliminar de del array (limpiamos el array)
-                todos.splice(i, 1);     
+                todos.splice(i, 1); 
+                actualizaTodos(todos);
+                render();
+
             });
         });
 }
 
+const actualizaTodos = (todos) => {
+    // convertimos a string
+    const todoStrings = JSON.stringify(todos);
+    // guardamos dentro setItem lo que tendremos en localStorage
+    localStorage.setItem('todos', todoStrings);
+}
+
 // window.onload permite que cargue el html antes que el JS
 window.onload = () => {
+    render();
 // Creamos form el cual llamada al elemento form por su ID
 const form = document.getElementById('todo-form');
 form.onsubmit = (refresh) => {
@@ -40,7 +51,7 @@ form.onsubmit = (refresh) => {
 
     // .push nos permite agregar elementos al array
     todos.push(todoText);
-
+    actualizaTodos(todos);
     // Ejecutamos render
     render();
     }
