@@ -7,7 +7,7 @@
 [ Agregando Elementos a nuestro listado](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#agregando-elementos-a-nuestro-listado)
 [ Simplificando operaciones de array con .map](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#simplificando-operaciones-de-array-con-map)
 [Agregando eventos al hacer click en elementos](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#agregando-eventos-al-hacer-click-en-elementos)
-[Persistencia de datos](https://github.com/smars1/Portafolio-web/edit/main/JS_Project/Todo_List/Readme.md#persistencias-de-datos)
+[Persistencia de datos](https://github.com/smars1/Portafolio-web/tree/main/JS_Project/Todo_List#persistencias-de-datos)
 
 Este proyecto trata sobre una pequeña aplicacion que mantenga  persistencia de datos, donde podamos escribir un texto y este se guarde al oprimir un boton enviar, 
 en forma de una lista unordered (no ordenada)
